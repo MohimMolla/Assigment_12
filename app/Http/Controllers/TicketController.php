@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\SeatAllocationation;
+use App\Models\Ticket;
 use Illuminate\Http\Request;
 
-class SeatAllocationationController extends Controller
+class TicketController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        
+        //
     }
 
     /**
@@ -34,7 +34,7 @@ class SeatAllocationationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(SeatAllocationation $seatAllocationation)
+    public function show(Ticket $ticket)
     {
         //
     }
@@ -42,7 +42,7 @@ class SeatAllocationationController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(SeatAllocationation $seatAllocationation)
+    public function edit(Ticket $ticket)
     {
         //
     }
@@ -50,7 +50,7 @@ class SeatAllocationationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, SeatAllocationation $seatAllocationation)
+    public function update(Request $request, Ticket $ticket)
     {
         //
     }
@@ -58,7 +58,7 @@ class SeatAllocationationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(SeatAllocationation $seatAllocationation)
+    public function destroy(Ticket $ticket)
     {
         //
     }
