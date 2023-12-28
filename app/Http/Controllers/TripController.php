@@ -43,5 +43,6 @@ class TripController extends Controller
     $trip->delete();
     return redirect()->route('trip')->with('message','Trips Delete successfully');
    }
+   
 
 }

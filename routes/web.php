@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TripController;
+use App\Http\Controllers\TripLocationController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -48,7 +49,9 @@ Route::get('/trip-edit/{id}',[TripController::class, 'EditTrip'])->name('trip_ed
 Route::post('/trip-update/{id}', [TripController::class, 'UpdateTrip'])->name('trip_update');
 Route::get('/trip-delete/{id}',[TripController::class, 'DeleteTrip'])->name('delete_trip');
 
-
+Route::resources([
+'triplocation' => TripLocationController::class,
+]);
 
 
 require __DIR__.'/auth.php';

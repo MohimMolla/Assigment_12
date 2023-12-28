@@ -38,6 +38,11 @@
              <i class="fa-solid fa-pen-nib" style="color: #a82497;"></i>
              <span class="text-success">Route</span></a>
      </li>
+     <li class="nav-item">
+         <a class="nav-link" href="{{route('triplocation.index')}}">
+             <i class="fa-solid fa-pen-nib" style="color: #a82497;"></i>
+             <span class="text-success">Trip</span></a>
+     </li>
 
         
      <div class="text-center d-none d-md-inline">
