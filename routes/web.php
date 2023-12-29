@@ -53,5 +53,7 @@ Route::resources([
 'triplocation' => TripLocationController::class,
 ]);
 
+Route::get('location-delet/{id}',[TripLocationController::class,'Delete'])->name('trip-location-delet');
+
 
 require __DIR__.'/auth.php';

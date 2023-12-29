@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Trip;
 use App\Models\TripLocation;
 use App\Models\User;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 class TripLocationController extends Controller
@@ -14,11 +15,9 @@ class TripLocationController extends Controller
      */
     public function index()
     {
-        //$trip = Trip::get();
-        $triplocations = TripLocation::with('fromTrip', 'toTrip')->get();
-         return view('triplocation.all', get_defined_vars());
 
-        
+        $triplocations = TripLocation::with('fromTrip', 'toTrip')->get();
+        return view('triplocation.all', get_defined_vars());
     }
 
     /**
@@ -27,7 +26,7 @@ class TripLocationController extends Controller
     public function create()
     {
         $trips = Trip::all();
-       return view('triplocation.create',compact('trips'));
+        return view('triplocation.create', compact('trips'));
     }
 
     /**
@@ -35,7 +34,14 @@ class TripLocationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        //try {
+        $triplocation = TripLocation::create($request->all());
+        return redirect()->route('triplocation.index')->with('message', 'Trip Location Information created successfully');
+        //} catch (QueryException $exception) {
+        //    $errorMessage = $exception->getMessage();
+        //    return redirect()->route('triplocation.index')->with('message', "Could not create Duplicate Location");
+        //}
     }
 
     /**
@@ -49,24 +55,40 @@ class TripLocationController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(TripLocation $tripLocation)
+    public function edit(TripLocation $tripLocation, $id)
     {
-        //
+
+        $tripLocation = TripLocation::with('fromTrip', 'toTrip')->find($id);
+        if ($tripLocation) {
+            $trips = Trip::all();
+            return view('triplocation.edit', get_defined_vars());
+        } else {
+
+            return redirect()->route('triplocation.edit')->with('error', 'Trip Location not found');
+        }
+    }
+    //    public function edit(TripLocation $tripLocation)
+    //{
+    //    return $tripLocation->id;
+    //}
+
+
+    public function update(Request $request, TripLocation $tripLocation, $id)
+    {
+        $tripLocation = TripLocation::with('fromTrip', 'toTrip')
+       ->find($id);
+       $tripLocation->update($request->all());
+       return redirect()->route('triplocation.index')->with('success', 'Trip Location Information Updated successfully');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, TripLocation $tripLocation)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(TripLocation $tripLocation)
     {
-        //
+    }
+    public function Delete($id)
+    {
+        $tripLocation = TripLocation::find($id);
+        $tripLocation->delete();
+        return redirect()->back()->with('sucess', 'Trip Location deleted successfully');
     }
 }
