@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
            <div class="col-10">
-            <form method="POST" action="{{ route('CreateTrip',$trip->id) }}">
+            <form method="POST" action="{{ route('trip_update',$trip->id) }}">
                 @csrf
 	      @method('POST')
                 <div class="mb-3">

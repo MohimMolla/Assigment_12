@@ -17,7 +17,10 @@ return new class extends Migration
             $table->foreign('trip_from')->references('id')->on('trips')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('trip_to');
             $table->foreign('trip_to')->references('id')->on('trips')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('trip_location_name');
             $table->timestamps();
+
+            $table->unique(['trip_from', 'trip_to']);
         });
     }
 

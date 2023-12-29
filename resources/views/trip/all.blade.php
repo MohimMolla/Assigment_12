@@ -26,7 +26,7 @@
                             
                             <td>
                                 <a class="btn btn-info mb-2" href="{{ route('trip_edit', $trip->id) }}">Edit</a>
-                                <a class="btn btn-info mb-2" href="{{ route('delete_trip', $trip->id) }}">Delete</a>
+                                <a onclick="return confirm('Are you sure you want to delete this Location?')" class="btn btn-info mb-2" href="{{ route('delete_trip', $trip->id) }}">Delete</a>
                             </td>
                         </tr>
                     @endforeach
